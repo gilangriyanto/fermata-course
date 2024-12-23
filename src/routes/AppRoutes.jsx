@@ -10,6 +10,8 @@ const Dashboard = React.lazy(() => import("../pages/Dashboard"));
 const DataSiswa = React.lazy(() => import("../pages/DataSiswa"));
 const DataGuru = React.lazy(() => import("../pages/DataGuru")); // Sesuaikan dengan nama file yang benar
 const DataInstrument = React.lazy(() => import("../pages/DataInstrument")); // Sesuaikan dengan nama file yang benar
+const Package = React.lazy(() => import("../pages/Package")); // Sesuaikan dengan nama file yang benar
+const StudentPackage = React.lazy(() => import("../pages/StudentPackage")); // Sesuaikan dengan nama file yang benar
 const Jadwal = React.lazy(() => import("../pages/Jadwal")); // Sesuaikan dengan nama file yang benar
 const Presensi = React.lazy(() => import("../pages/Presensi")); // Sesuaikan dengan nama file yang benar
 
@@ -83,6 +85,22 @@ const AppRoutes = () => {
           }
         />
 
+        <Route
+          path="/package"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Package />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/student-package"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <StudentPackage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/jadwal"
           element={

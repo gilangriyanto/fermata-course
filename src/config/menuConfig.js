@@ -60,6 +60,18 @@ export const menuConfig = [
     title: "Pembelajaran",
     links: [
       {
+        name: "Package",
+        path: "package",
+        icon: <FiClock />,
+        allowedRoles: ["admin", "teacher", "student"],
+      },
+      {
+        name: "Student Package",
+        path: "student-package",
+        icon: <FiClock />,
+        allowedRoles: ["admin", "teacher", "student"],
+      },
+      {
         name: "Jadwal",
         path: "jadwal",
         icon: <FiClock />,
