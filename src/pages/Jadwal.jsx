@@ -202,6 +202,7 @@ const Jadwal = () => {
         setShowEditModal(false);
         setImagePreview(null);
         setSelectedImage(null);
+        setEditData({ attendance_status: "", note: "" });
         await fetchScheduleData();
         alert("Presensi berhasil diupdate!");
       }

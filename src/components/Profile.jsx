@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import api from "../api/axios";
+import axios from "../api/axios";
 import { toast } from "react-toastify";
 
 const Profile = () => {
@@ -9,10 +9,13 @@ const Profile = () => {
   const [formData, setFormData] = useState({
     name: user?.name || "",
     email: user?.email || "",
+    phone: user?.phone || "",
+    address: user?.address || "",
     avatar: null,
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
+    instruments: user?.teacher_data?.instruments || [],
   });
 
   const handleInputChange = (e) => {
@@ -31,33 +34,162 @@ const Profile = () => {
     }));
   };
 
+  const handleInstrumentChange = (e) => {
+    const value = e.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      instruments: prev.instruments.includes(value)
+        ? prev.instruments.filter((i) => i !== value)
+        : [...prev.instruments, value],
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        if (formData[key]) {
-          formDataToSend.append(key, formData[key]);
-        }
-      });
 
-      const response = await api.put("/api/users/profile", formDataToSend, {
+      // Add basic user data
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+
+      if (formData.phone) formDataToSend.append("phone", formData.phone);
+      if (formData.address) formDataToSend.append("address", formData.address);
+
+      // Add password fields if provided
+      if (formData.currentPassword)
+        formDataToSend.append("currentPassword", formData.currentPassword);
+      if (formData.newPassword)
+        formDataToSend.append("newPassword", formData.newPassword);
+      if (formData.confirmPassword)
+        formDataToSend.append("confirmPassword", formData.confirmPassword);
+
+      // Add instruments for teacher
+      if (user?.role === "teacher" && formData.instruments.length > 0) {
+        formDataToSend.append(
+          "teacher_data[instruments]",
+          JSON.stringify(formData.instruments)
+        );
+      }
+
+      // Add avatar if changed
+      if (formData.avatar) {
+        formDataToSend.append("avatar", formData.avatar);
+      }
+
+      const response = await axios.put("/api/users/profile", formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
       if (response.data.success) {
         updateUser(response.data.data);
         toast.success("Profile updated successfully");
+        setFormData((prev) => ({
+          ...prev,
+          currentPassword: "",
+          newPassword: "",
+          confirmPassword: "",
+        }));
       }
     } catch (error) {
-      console.error("Update error:", error);
       toast.error(error.response?.data?.message || "Failed to update profile");
+      console.error("Update error:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const instrumentOptions = [
+    "Gitar",
+    "Piano",
+    "Vokal",
+    "Drum",
+    "Bass",
+    "Biola",
+  ];
+
+  const renderRoleSpecificFields = () => {
+    switch (user?.role) {
+      case "teacher":
+        return (
+          <>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full border p-2 rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Address</label>
+              <textarea
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                className="w-full border p-2 rounded"
+                rows="3"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">
+                Instruments
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                {instrumentOptions.map((instrument) => (
+                  <label
+                    key={instrument}
+                    className="flex items-center space-x-2"
+                  >
+                    <input
+                      type="checkbox"
+                      value={instrument}
+                      checked={formData.instruments.includes(instrument)}
+                      onChange={handleInstrumentChange}
+                      className="form-checkbox"
+                    />
+                    <span>{instrument}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </>
+        );
+      case "student":
+        return (
+          <>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full border p-2 rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Address</label>
+              <textarea
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                className="w-full border p-2 rounded"
+                rows="3"
+              />
+            </div>
+          </>
+        );
+      case "admin":
+      default:
+        return null;
     }
   };
 
@@ -105,6 +237,8 @@ const Profile = () => {
             className="w-full border p-2 rounded"
           />
         </div>
+
+        {renderRoleSpecificFields()}
 
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">

@@ -151,7 +151,6 @@ const Presensi = () => {
   const isAdmin = getUserRole() === "admin";
   const toolbarOptions = ["Search"];
 
-  // Transform presensi data
   const transformPresensiData = (rawData, viewAs = viewType) => {
     if (!rawData) return [];
 

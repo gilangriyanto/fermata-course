@@ -36,18 +36,18 @@ export const menuConfig = [
         icon: <FiUsers />,
         allowedRoles: ["admin"],
       },
-      {
-        name: "Data Instrument",
-        path: "data-instrument",
-        icon: <FiMusic />,
-        allowedRoles: ["admin"],
-      },
-      {
-        name: "Data Ruangan",
-        path: "data-ruangan",
-        icon: <FiBookOpen />,
-        allowedRoles: ["admin"],
-      },
+      // {
+      //   name: "Data Instrument",
+      //   path: "data-instrument",
+      //   icon: <FiMusic />,
+      //   allowedRoles: ["admin"],
+      // },
+      // {
+      //   name: "Data Ruangan",
+      //   path: "data-ruangan",
+      //   icon: <FiBookOpen />,
+      //   allowedRoles: ["admin"],
+      // },
       {
         name: "Data Admin",
         path: "data-admin",
