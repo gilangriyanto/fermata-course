@@ -9,6 +9,7 @@ const Profile = React.lazy(() => import("../components/Profile")); // Lazy load 
 const Dashboard = React.lazy(() => import("../pages/Dashboard"));
 const DataSiswa = React.lazy(() => import("../pages/DataSiswa"));
 const DataGuru = React.lazy(() => import("../pages/DataGuru")); // Sesuaikan dengan nama file yang benar
+const DataAdmin = React.lazy(() => import("../pages/DataAdmin")); // Sesuaikan dengan nama file yang benar
 // const DataInstrument = React.lazy(() => import("../pages/DataInstrument")); // Sesuaikan dengan nama file yang benar
 const Package = React.lazy(() => import("../pages/Package")); // Sesuaikan dengan nama file yang benar
 const StudentPackage = React.lazy(() => import("../pages/StudentPackage")); // Sesuaikan dengan nama file yang benar
@@ -73,6 +74,14 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute allowedRoles={["admin"]}>
               <DataGuru />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/data-admin"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <DataAdmin />
             </ProtectedRoute>
           }
         />
