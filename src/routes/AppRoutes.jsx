@@ -15,6 +15,7 @@ const Package = React.lazy(() => import("../pages/Package")); // Sesuaikan denga
 const StudentPackage = React.lazy(() => import("../pages/StudentPackage")); // Sesuaikan dengan nama file yang benar
 const Jadwal = React.lazy(() => import("../pages/Jadwal")); // Sesuaikan dengan nama file yang benar
 const Presensi = React.lazy(() => import("../pages/Presensi")); // Sesuaikan dengan nama file yang benar
+const SlipGaji = React.lazy(() => import("../pages/SalarySlip")); // Sesuaikan dengan nama file yang benar
 
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   const { user } = useAuth();
@@ -124,6 +125,15 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute allowedRoles={["admin", "teacher"]}>
               <Presensi />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/pembayaran-les"
+          element={
+            <ProtectedRoute allowedRoles={["admin", "teacher"]}>
+              <SlipGaji />
             </ProtectedRoute>
           }
         />

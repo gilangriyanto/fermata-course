@@ -7,6 +7,9 @@ import { Navbar, Sidebar } from "./components";
 import AppRoutes from "./routes/AppRoutes"
 import { useStateContext } from "./contexts/ContextProvider";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "./App.css";
 
 const AppContent = () => {
@@ -68,6 +71,7 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <AppContent />
+        <ToastContainer />
       </BrowserRouter>
     </AuthProvider>
   );
