@@ -41,6 +41,8 @@ const Navbar = () => {
     screenSize,
   } = useStateContext();
 
+  // Gunakan user langsung dari context yang sudah terupdate
+  const userAvatar = user?.cover_image || defaultAvatar;
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -57,9 +59,6 @@ const Navbar = () => {
   }, [screenSize]);
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
-
-  // Gunakan avatar default atau URL avatar dari user jika ada
-  const userAvatar = user?.avatar || defaultAvatar;
 
   return (
     <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
@@ -85,7 +84,7 @@ const Navbar = () => {
           icon={<RiNotification3Line />}
         />
         <TooltipComponent content="Profile" position="BottomCenter">
-          <div
+        <div
             className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
             onClick={() => handleClick("userProfile")}
           >

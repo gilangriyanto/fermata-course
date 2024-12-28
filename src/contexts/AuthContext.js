@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("userData", JSON.stringify(userDataToStore));
   };
 
+
   // const updateUser = (newUserData) => {
   //   setUser(prevUser => {
   //     const updatedUser = {
@@ -68,6 +69,8 @@ export const AuthProvider = ({ children }) => {
         teacher_data: updatedUser.teacher_data,
       };
       localStorage.setItem("userData", JSON.stringify(userDataToStore));
+      // Update localStorage
+    // localStorage.setItem('user', JSON.stringify(userData));
 
       return updatedUser;
     });

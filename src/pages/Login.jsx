@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Header } from '../components';
-// import AppRoutes from "./routes/AppRoutes"
 import api from '../api/axios';
 
 const Login = () => {
@@ -21,7 +19,6 @@ const Login = () => {
     try {
       const response = await api.post('/api/users/login', credentials);
       const userData = response.data;
-      
       login(userData);
       
       switch (userData.role) {
@@ -38,55 +35,101 @@ const Login = () => {
           navigate('/');
       }
     } catch (error) {
-      console.error('Login failed:', error);
-      setError(error.response?.data?.message || 'Login gagal. Silakan coba lagi.');
+      setError(error.response?.data?.message || 'Login failed. Please try again.');
     }
   };
 
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Page" title="Login" />
-      <div className="flex justify-center items-center">
-        <div className="w-full max-w-md">
-          <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#F5F5FF]">
+      <div className="w-full max-w-6xl grid grid-cols-2 bg-white rounded-3xl shadow-lg overflow-hidden">
+        {/* Left side - Form */}
+        <div className="p-12">
+          <div className="mb-12">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 bg-[#6366F1] rounded"></div>
+              <span className="font-bold text-xl">Pela Design</span>
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <h1 className="text-5xl font-bold mb-4">Get started</h1>
+            <p className="text-gray-600">
+              Already have an account?{" "}
+              <a href="#" className="text-[#6366F1] font-semibold">
+                Sign in
+              </a>
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+              <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded">
                 {error}
               </div>
             )}
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Email
               </label>
               <input
                 type="email"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#6366F1]"
+                placeholder="Enter your email"
                 value={credentials.email}
                 onChange={(e) => setCredentials({...credentials, email: e.target.value})}
                 required
               />
             </div>
-            <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Password
               </label>
               <input
                 type="password"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#6366F1]"
+                placeholder="Enter your password"
                 value={credentials.password}
                 onChange={(e) => setCredentials({...credentials, password: e.target.value})}
                 required
               />
             </div>
-            <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Sign In
-              </button>
-            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-[#6366F1] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#5457E5] transition-colors"
+            >
+              Sign in
+            </button>
           </form>
+        </div>
+
+        {/* Right side - Illustration */}
+        <div className="bg-[#6366F1] p-12 flex items-center justify-center relative">
+          <div className="text-white text-center relative z-10">
+            <h2 className="text-3xl font-bold mb-4">Have your own personal website</h2>
+            <div className="flex justify-center gap-1 mt-4">
+              <span className="h-2 w-2 rounded-full bg-white opacity-50"></span>
+              <span className="h-2 w-2 rounded-full bg-white"></span>
+              <span className="h-2 w-2 rounded-full bg-white opacity-50"></span>
+            </div>
+          </div>
+
+          {/* Stars background */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  opacity: Math.random() * 0.5 + 0.25
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

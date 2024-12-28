@@ -35,7 +35,7 @@ const UserProfile = () => {
     navigate("/profile");
   };
 
-  const userAvatar = user?.avatar || defaultAvatar;
+  const userAvatar = user?.cover_image || defaultAvatar;
 
   const renderRoleSpecificInfo = () => {
     switch (user?.role) {
