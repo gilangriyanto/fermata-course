@@ -47,7 +47,7 @@ const Login = () => {
           <div className="mb-12">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 bg-[#6366F1] rounded"></div>
-              <span className="font-bold text-xl">Pela Design</span>
+              <span className="font-bold text-xl">Fermata Music Course</span>
             </div>
           </div>
 
@@ -108,7 +108,7 @@ const Login = () => {
         {/* Right side - Illustration */}
         <div className="bg-[#6366F1] p-12 flex items-center justify-center relative">
           <div className="text-white text-center relative z-10">
-            <h2 className="text-3xl font-bold mb-4">Have your own personal website</h2>
+            <h2 className="text-3xl font-bold mb-4">Welcome to the Fermata Music Course website</h2>
             <div className="flex justify-center gap-1 mt-4">
               <span className="h-2 w-2 rounded-full bg-white opacity-50"></span>
               <span className="h-2 w-2 rounded-full bg-white"></span>

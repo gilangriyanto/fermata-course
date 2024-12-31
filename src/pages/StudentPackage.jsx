@@ -673,14 +673,6 @@ const StudentPackage = () => {
   const [showAddScheduleModal, setShowAddScheduleModal] = useState(false);
   const [selectedPackageId, setSelectedPackageId] = useState(null);
   const [selectedScheduleId, setSelectedScheduleId] = useState(null);
-  // const [packageData, setPackageData] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  // const [showModal, setShowModal] = useState(false);
-  // const [students, setStudents] = useState([]);
-  // const [packages, setPackages] = useState([]);
-  // const [teachers, setTeachers] = useState([]);
 
   const [formData, setFormData] = useState({
     student_id: "",
