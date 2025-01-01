@@ -77,29 +77,29 @@ export const menuConfig = [
         icon: <FiClock />,
         allowedRoles: ["admin", "teacher", "student"],
       },
-      {
-        name: "Presensi",
-        path: "presensi",
-        icon: <FiCheckSquare />,
-        allowedRoles: ["admin", "teacher"],
-      },
+      // {
+      //   name: "Presensi",
+      //   path: "presensi",
+      //   icon: <FiCheckSquare />,
+      //   allowedRoles: ["admin", "teacher"],
+      // },
     ],
   },
   {
     title: "Keuangan",
     links: [
       {
-        name: "Pembayaran Les",
-        path: "pembayaran-les",
-        icon: <FiDollarSign />,
-        allowedRoles: ["admin"],
-      },
-      {
         name: "Slip Gaji Guru",
         path: "slip-gaji-guru",
         icon: <FiDollarSign />,
-        allowedRoles: ["admin", "teacher"],
+        allowedRoles: ["admin"],
       },
+      // {
+      //   name: "Slip Gaji Guru",
+      //   path: "slip-gaji-guru",
+      //   icon: <FiDollarSign />,
+      //   allowedRoles: ["admin", "teacher"],
+      // },
     ],
   },
 ];

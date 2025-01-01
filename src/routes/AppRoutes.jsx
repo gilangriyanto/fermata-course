@@ -14,7 +14,7 @@ const DataAdmin = React.lazy(() => import("../pages/DataAdmin")); // Sesuaikan d
 const Package = React.lazy(() => import("../pages/Package")); // Sesuaikan dengan nama file yang benar
 const StudentPackage = React.lazy(() => import("../pages/StudentPackage")); // Sesuaikan dengan nama file yang benar
 const Jadwal = React.lazy(() => import("../pages/Jadwal")); // Sesuaikan dengan nama file yang benar
-const Presensi = React.lazy(() => import("../pages/Presensi")); // Sesuaikan dengan nama file yang benar
+// const Presensi = React.lazy(() => import("../pages/Presensi")); // Sesuaikan dengan nama file yang benar
 const SlipGaji = React.lazy(() => import("../pages/SalarySlip")); // Sesuaikan dengan nama file yang benar
 
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
@@ -120,17 +120,17 @@ const AppRoutes = () => {
           }
         />
 
-        <Route
+        {/* <Route
           path="/presensi"
           element={
             <ProtectedRoute allowedRoles={["admin", "teacher"]}>
               <Presensi />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         <Route
-          path="/pembayaran-les"
+          path="/slip-gaji-guru"
           element={
             <ProtectedRoute allowedRoles={["admin", "teacher"]}>
               <SlipGaji />
