@@ -17,7 +17,7 @@ export const menuConfig = [
         name: "Dashboard",
         path: "dashboard",
         icon: <FiHome />,
-        allowedRoles: ["admin", "teacher", "student"],
+        allowedRoles: ["admin"],
       },
     ],
   },
@@ -28,7 +28,7 @@ export const menuConfig = [
         name: "Data Siswa",
         path: "data-siswa",
         icon: <FiUsers />,
-        allowedRoles: ["admin", "teacher"],
+        allowedRoles: ["admin"],
       },
       {
         name: "Data Guru",
@@ -63,13 +63,13 @@ export const menuConfig = [
         name: "Package",
         path: "package",
         icon: <FiClock />,
-        allowedRoles: ["admin", "teacher", "student"],
+        allowedRoles: ["admin"],
       },
       {
         name: "Student Package",
         path: "student-package",
         icon: <FiClock />,
-        allowedRoles: ["admin", "teacher", "student"],
+        allowedRoles: ["admin"],
       },
       {
         name: "Jadwal",

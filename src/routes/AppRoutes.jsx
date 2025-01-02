@@ -55,7 +55,7 @@ const AppRoutes = () => {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute allowedRoles={["admin", "teacher", "student"]}>
+            <ProtectedRoute allowedRoles={["admin"]}>
               <Dashboard />
             </ProtectedRoute>
           }
@@ -64,7 +64,7 @@ const AppRoutes = () => {
         <Route
           path="/data-siswa"
           element={
-            <ProtectedRoute allowedRoles={["admin", "teacher"]}>
+            <ProtectedRoute allowedRoles={["admin"]}>
               <DataSiswa />
             </ProtectedRoute>
           }
@@ -132,7 +132,7 @@ const AppRoutes = () => {
         <Route
           path="/slip-gaji-guru"
           element={
-            <ProtectedRoute allowedRoles={["admin", "teacher"]}>
+            <ProtectedRoute allowedRoles={["admin"]}>
               <SlipGaji />
             </ProtectedRoute>
           }
