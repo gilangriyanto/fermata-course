@@ -416,7 +416,7 @@ const DataGuru = () => {
 
       console.log("Sending registration data:", teacherData);
 
-      const response = await axios.post("/api/users/register", teacherData);
+      const response = await axios.post("/api/auth/register", teacherData);
 
       setFormData({
         name: "",

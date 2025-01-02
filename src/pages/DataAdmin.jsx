@@ -252,7 +252,7 @@ const DataAdmin = () => {
     setFormError("");
 
     try {
-      const response = await axios.post(`/api/users/register`, formData);
+      const response = await axios.post(`/api/auth/register`, formData);
 
       if (response.data && response.data._id) {
         // Add new admin to the list with the correct structure

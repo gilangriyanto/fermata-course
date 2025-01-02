@@ -327,7 +327,7 @@ const DataSiswa = () => {
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/users/register", newStudent);
+      const response = await axios.post("/api/auth/register", newStudent);
       await fetchData();
       setShowModal(false);
       setNewStudent({

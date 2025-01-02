@@ -17,7 +17,7 @@ const Login = () => {
     setError('');
     
     try {
-      const response = await api.post('/api/users/login', credentials);
+      const response = await api.post('/api/auth/login', credentials);
       const userData = response.data;
       login(userData);
       
